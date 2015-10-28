@@ -7,6 +7,12 @@ b=class==1;
 data0= data(a, :);
 data1= data(b, :);
 
+%Randomize data
+random=randperm(size(data0,1));
+data0=data0(random,:);
+random=randperm(size(data1,1));
+data1=data1(random,:);
+
 %Divide the class0 in training 50%, validation 25% and test 25%
 
 [numberRows0,~]=size(data0);
