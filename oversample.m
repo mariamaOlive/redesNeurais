@@ -21,7 +21,7 @@ nRowsTrn0= fix(0.5*numberRows0);
 nRowsVdt0= fix(0.25*numberRows0);
 
 startVld= nRowsTrn0+1;
-startTest= nRowsTrn0+nRowsVdt0+2;
+startTest= nRowsTrn0+nRowsVdt0+1;
 
 training0= data0(1:nRowsTrn0,:);
 validation0= data0((startVld):(startTest-1),:);
@@ -36,7 +36,7 @@ nRowsTrn1= fix(0.5*numberRows1);
 nRowsVdt1= fix(0.25*numberRows1);
 
 startVld= nRowsTrn1+1;
-startTest= nRowsTrn1+nRowsVdt1+2;
+startTest= nRowsTrn1+nRowsVdt1+1;
 
 training1= data1(1:nRowsTrn1,:);
 validation1= data1((startVld):(startTest-1),:);
