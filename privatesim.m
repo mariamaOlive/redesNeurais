@@ -1,4 +1,4 @@
-function [Y,Xf,Af,E,perf]=sim(net,varargin)
+function [Y,Xf,Af,E,perf]=privatesim(net,varargin)
 %SIM Simulate a neural network.
 %
 %  SIM(NET,X) takes a network NET and inputs X and returns the outputs
