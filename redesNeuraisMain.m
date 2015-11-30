@@ -5,8 +5,14 @@ originalData= csvread('mammography-consolidated.csv');
 class = originalData(:, end);
 data= originalData(:, 1:(end-1));
 
+%Number of neighbours chosen when applying smote algorithm
+k=5;
+
 %Divide the dataset in training 50%, validation 25%, test 25%
-[training,trainingClass, validation, validationClass, test, testClass]=oversample(data, class);
+%[training,trainingClass, validation, validationClass, test, testClass]=oversample(data, class);
+%[training,trainingClass, validation, validationClass, test, testClass]=smote(data, class,k);
+[training,trainingClass, validation, validationClass, test, testClass]=adaptedSmote(data, class,k);
+
 
 %Write balanced data into a csv file
 csvwrite('mammography-consolidated-training-oversample.csv',[training, trainingClass])
