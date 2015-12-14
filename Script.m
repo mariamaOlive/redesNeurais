@@ -23,15 +23,15 @@ j=1;
         echo off
         
         %    Lendo arquivos e armazenando dados em matrizes
-        dadosTreinamento    = csvread('mammography-consolidated-training-oversample.csv')';    % Lendo arquivo de treinamento
+        dadosTreinamento    = csvread('mammography-consolidated-training-smote.csv')';    % Lendo arquivo de treinamento
         entradasTreinamento = dadosTreinamento(1:numEntradas, 1:numTr);
         saidasTreinamento   = dadosTreinamento((numEntradas + 1):(numEntradas + numSaidas), 1:numTr);
         
-        dadosValidacao      = csvread('mammography-consolidated-validation-oversample.csv')';    % Mesmo processo para validacao
+        dadosValidacao      = csvread('mammography-consolidated-validation-smote.csv')';    % Mesmo processo para validacao
         entradasValidacao   = dadosValidacao(1:numEntradas, 1:numVal);
         saidasValidacao     = dadosValidacao((numEntradas + 1):(numEntradas + numSaidas), 1:numVal);
         
-        dadosTeste          = csvread('mammography-consolidated-test-oversample.csv')';      % Mesmo processo para teste
+        dadosTeste          = csvread('mammography-consolidated-test-smote.csv')';      % Mesmo processo para teste
         entradasTeste       = dadosTeste(1:numEntradas, 1:numTeste);
         saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + numSaidas), 1:numTeste);
         
@@ -42,7 +42,7 @@ j=1;
             matrizFaixa(entrada,:) = [0 1];
         end
         
-        rede = newff(matrizFaixa,[numEscondidos numSaidas],{'logsig','logsig'},'trainlm','learngdm','mse');
+        rede = newff(matrizFaixa,[numEscondidos numSaidas],{'logsig','logsig'},'traingdm','learngdm','mse');
         % matrizFaixa                    : indica que todas as entradas possuem valores na faixa entre 0 e 1
         % [numEscondidos numSaidas]      : indica a quantidade de nodos escondidos e de saida da rede
         % {'logsig','logsig'}            : indica que os nodos das camadas escondida e de saida terao funcao de ativacao sigmoide logistica
@@ -53,7 +53,7 @@ j=1;
         rede = init(rede);
         echo on
         %   Parametros do treinamento (para ajuda, digite 'help traingd')
-        rede.trainParam.epochs   = 10000;    % Maximo numero de iteracoes
+        rede.trainParam.epochs   = 30000;    % Maximo numero de iteracoes
         rede.trainParam.lr       = taxasApr(j);  % Taxa de aprendizado
         rede.trainParam.goal     = 0;      % Criterio de minimo erro de treinamento
         rede.trainParam.max_fail = 10;      % Criterio de quantidade maxima de falhas na validacao
@@ -99,7 +99,7 @@ j=1;
          [tp,fp,thresholds] = roc(saidasTeste,saidasRedeTeste);
          n = size(tp, 2);
          A = sum((fp(2:n) - fp(1:n-1)).*(tp(2:n)+tp(1:n-1)))/2;
-         fprintf('Área sob a curva ROC: %6.5f \n',A);
+         fprintf('?rea sob a curva ROC: %6.5f \n',A);
          [c,cm,ind,per] = confusion(saidasTeste, saidasRedeTeste);
          disp('Confusion Matrix')
          figure, plotperform(desempenho)
