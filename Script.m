@@ -42,7 +42,7 @@ j=1;
             matrizFaixa(entrada,:) = [0 1];
         end
         
-        rede = newff(matrizFaixa,[numEscondidos numSaidas],{'logsig','logsig'},'trainlm','learngdm','mse');
+        rede = newff(matrizFaixa,[numEscondidos numSaidas],{'logsig','logsig'},'traingdm','learngdm','mse');
         % matrizFaixa                    : indica que todas as entradas possuem valores na faixa entre 0 e 1
         % [numEscondidos numSaidas]      : indica a quantidade de nodos escondidos e de saida da rede
         % {'logsig','logsig'}            : indica que os nodos das camadas escondida e de saida terao funcao de ativacao sigmoide logistica
@@ -53,7 +53,7 @@ j=1;
         rede = init(rede);
         echo on
         %   Parametros do treinamento (para ajuda, digite 'help traingd')
-        rede.trainParam.epochs   = 10000;    % Maximo numero de iteracoes
+        rede.trainParam.epochs   = 30000;    % Maximo numero de iteracoes
         rede.trainParam.lr       = taxasApr(j);  % Taxa de aprendizado
         rede.trainParam.goal     = 0;      % Criterio de minimo erro de treinamento
         rede.trainParam.max_fail = 10;      % Criterio de quantidade maxima de falhas na validacao
