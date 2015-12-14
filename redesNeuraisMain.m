@@ -11,7 +11,8 @@ k=5;
 %Divide the dataset in training 50%, validation 25%, test 25%
 %[training,trainingClass, validation, validationClass, test, testClass]=oversample(data, class);
 %[training,trainingClass, validation, validationClass, test, testClass]=smote(data, class,k);
-%[training,trainingClass, validation, validationClass, test, testClass]=ourAdaptedSmote(data, class,k);
+%[training,trainingClass, validation, validationClass, test, testClass]=smote(data, class,k);
+[training,trainingClass, validation, validationClass, test, testClass]=adaptedSmote(data, class,k);
 
 
 %Write balanced data into a csv file
