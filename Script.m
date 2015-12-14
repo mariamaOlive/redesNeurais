@@ -99,6 +99,7 @@ j=1;
          [tp,fp,thresholds] = roc(saidasTeste,saidasRedeTeste);
          n = size(tp, 2);
          A = sum((fp(2:n) - fp(1:n-1)).*(tp(2:n)+tp(1:n-1)))/2;
+         fprintf('Área sob a curva ROC: %6.5f \n',A);
          [c,cm,ind,per] = confusion(saidasTeste, saidasRedeTeste);
          disp('Confusion Matrix')
          figure, plotperform(desempenho)
