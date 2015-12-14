@@ -1,4 +1,4 @@
-function [training, trainingClass, validation, validationClass, test, testClass] = adaptedSmote(data, class, k)
+function [training, trainingClass, validation, validationClass, test, testClass] = ourAdaptedSmote(data, class, k)
 
 %Divide the dataset into two classes
 a=class==0;
@@ -46,15 +46,15 @@ test1= data1(startTest:end,:);
 newTraining1= training1;
 newValidation1= validation1;
 
-while size(newTraining1,1)+(size(training1,1)*k)<size(training0,1)
+while size(newTraining1,1)<size(training0,1)
     tempT=smoteAdaptAlgorithm([training0; training1], [zeros(size(training0, 1), 1); ones(size(training1, 1), 1)], training1, k);
     newTraining1=[newTraining1;tempT];
     tempV=smoteAdaptAlgorithm([validation0; validation1], [zeros(size(validation0, 1), 1); ones(size(validation1, 1), 1)], validation1, k);
     newValidation1=[newValidation1;tempV];
 end
 
-training1=newTraining1;
-validation1=newValidation1;
+training1=newTraining1(1:size(training0,1),:);
+validation1=newValidation1(1:size(validation0,1),:);
 
 %Merging training, validation and test sets in their respective matrices
 %Merging training, validation and test (class0+class1)
