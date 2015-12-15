@@ -16,22 +16,22 @@ j=1;
         numEntradas   = 6;     % Numero de nodos de entrada
         numEscondidos = nNosEscondidos(i);     % Numero de nodos escondidos
         numSaidas     = 1;     % Numero de nodos de saida
-        numTr         = 10922;   % Numero de padroes de treinamento
-        numVal        = 5460;    % Numero de padroes de validacao
+        numTr         = 260;   % Numero de padroes de treinamento
+        numVal        = 130;    % Numero de padroes de validacao
         numTeste      = 2797;    % Numero de padroes de teste
         
         echo off
         
         %    Lendo arquivos e armazenando dados em matrizes
-        dadosTreinamento    = csvread('mammography-consolidated-training-adaptedSmote.csv')';    % Lendo arquivo de treinamento
+        dadosTreinamento    = csvread('mammography-consolidated-training-undersample.csv')';    % Lendo arquivo de treinamento
         entradasTreinamento = dadosTreinamento(1:numEntradas, 1:numTr);
         saidasTreinamento   = dadosTreinamento((numEntradas + 1):(numEntradas + numSaidas), 1:numTr);
         
-        dadosValidacao      = csvread('mammography-consolidated-validation-adaptedSmote.csv')';    % Mesmo processo para validacao
+        dadosValidacao      = csvread('mammography-consolidated-validation-undersample.csv')';    % Mesmo processo para validacao
         entradasValidacao   = dadosValidacao(1:numEntradas, 1:numVal);
         saidasValidacao     = dadosValidacao((numEntradas + 1):(numEntradas + numSaidas), 1:numVal);
         
-        dadosTeste          = csvread('mammography-consolidated-test-adaptedSmote.csv')';      % Mesmo processo para teste
+        dadosTeste          = csvread('mammography-consolidated-test-undersample.csv')';      % Mesmo processo para teste
         entradasTeste       = dadosTeste(1:numEntradas, 1:numTeste);
         saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + numSaidas), 1:numTeste);
         
